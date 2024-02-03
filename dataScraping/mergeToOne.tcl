@@ -13,8 +13,10 @@ foreach filename [glob -nocomplain -types f -- ./playerData/*] {
         set statline [lindex $lines $i]
         regsub -all {,([\d]*)\.([\d]*)\%} $statline {,0.\1\2} statline
 
-        # Print to file
-        puts $allPlayersFile "$pname,$statline"
+        # Print to file if not game 0
+        if ([expr $i > 1]) {
+            puts $allPlayersFile "$pname,$statline"
+        }
     }
 
     puts "Merged $filename to playerData/allPlayers.csv"
