@@ -82,7 +82,7 @@ def save_to_csv(player_name, stats_df):
     print(f"Data saved to {filename}")
 
 def main():
-    save_to_csv('test', scrape_player_names())
+    scrape_player_names().to_csv('./../players.csv', index=False) # Save all player names
     player_url = '/nba/games/shai-gilgeous-alexander.php'
 
     player_stats = scrape_player_stats(player_url)
