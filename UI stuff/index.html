@@ -23,8 +23,9 @@
                     </ul>
                 </div>
                 <i class="fa-solid fa-bars" onclick="showMenu()"></i>
-            </nav>
 
+            </nav>
+        
             <div class="text-box">
                 <h1>World's Most Cracked Website</h1>
                 <p>This shit got you<br>You can cook your pals in fantasy</p>
@@ -85,7 +86,7 @@
                 resultsContainer.innerHTML = ''; // Clear previous results
                 if (data.length === 0) {
                     // Display a message when no players are found
-                    resultsContainer.innerHTML = '<p>No player found.</p>';
+                    resultsContainer.innerHTML = '<p class="no-results">No player found.</p>';
                     return;
                 }
                 // Loop through each player and create a row for each
@@ -104,8 +105,8 @@
                     resultItem = document.createElement('div');
                     resultItem.classList.add('dataHeader');
                     resultItem.innerHTML = `
-                        <h3>Number</h3>
-                        <p>${player.number}</p>
+                        <h3>Minutes</h3>
+                        <p>${player.minutes}</p>
                     `;
                     resultRow.appendChild(resultItem);
 
@@ -152,8 +153,23 @@
                     resultItem = document.createElement('div');
                     resultItem.classList.add('dataHeader');
                     resultItem.innerHTML = `
+                        <h3>Fouls</h3>
+                        <p>${player.fouls}</p>
+                    `;
+
+                    resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
+                        <h3>Turnovers</h3>
+                        <p>${player.turnovers}</p>
+                    `;
+                    resultRow.appendChild(resultItem);
+                    resultRow.appendChild(resultItem);
+                    resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
                         <h3>Fantasy Points</h3>
-                        <p>${player.points + player.rebounds*1.2 + player.assists* 1.5 + player.steals *3 + player.blocks *3}</p>
+                        <p>${player.points + player.rebounds*1.2 + player.assists* 1.5 + player.steals *3 + player.blocks *3 - player.turnovers}</p>
                     `;
                     resultRow.appendChild(resultItem);
 

@@ -12,6 +12,21 @@
     background-size: cover;
     position: relative;
 }
+.head-bar{
+    min-height: 10vh;
+    width: 100%;
+    background-color: #00788C;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.top-picks {
+    padding: 20px;
+    background-color: #f8f8f8;
+    margin-top: 20px;
+    height: 400px; /* Adjust the height value as needed */
+    overflow-y: auto; /* Add this property to enable vertical scrolling if the content exceeds the height */
+}
 nav{
     display: flex;
     padding: 2% 6%;
@@ -56,7 +71,7 @@ nav img{
 .text-box{
     width: 90%;
     color: #fff;
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -103,6 +118,7 @@ nav .fa-solid{
     align-items: flex-end;
     justify-content: center;
     position: relative;
+    height: 0px;
 }
 
 .search-bar{
@@ -145,8 +161,6 @@ nav .fa-solid{
 }
 
 
-
-
 @media(max-width: 700px){
     .text-box h1{
         font-size: 20px;
@@ -175,19 +189,7 @@ nav .fa-solid{
         font-size: 22px;
         cursor: pointer;
     }
-    .nav-links ul li::after {
-        content: '';
-        width: 0%;
-        height: 2px;
-        background: #fff;
-        display: block;
-        margin: auto;
-        transition: 0.5s;
-    }
 
-    .nav-links ul li:hover::after {
-        width: 100%;
-    }
     .nav-links ul{
         padding: 30px;
     }
@@ -208,12 +210,22 @@ nav .fa-solid{
 .results h1 {
     font-size: 24px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .results p {
     font-size: 16px;
     color: #555;
     margin-bottom: 20px;
+    text-align: center;
+
+}
+
+
+.results p.no-results {
+    text-align: center;
+    color: #FF0000;
+    font-weight: bold;
 }
 
 .row {
@@ -254,4 +266,39 @@ nav .fa-solid{
     }
 
 
+}
+
+
+.top-pickups {
+    padding: 20px;
+    background-color: #f8f8f8;
+    margin-top: 20px;
+    height: 550px; /* Adjust the height value as needed */
+    overflow-y: auto; /* Add this property to enable vertical scrolling if the content exceeds the height */
+}
+
+.top-pickups h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.top-pickups p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Add this CSS to your existing style.css or in a new stylesheet */
+
+.player-boxes {
+    display: flex;
+    flex-direction: column; /* Stack players vertically */
+}
+
+.player-box {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
 }

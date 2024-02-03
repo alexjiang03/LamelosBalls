@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial-scale= 1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0f0868eb8c.js" crossorigin="anonymous"></script>
+    <title>Top Pickups</title>
+</head>
+<body>
+    <section class="head-bar">
+        <nav>
+            <a href="index.html"><img src="images/ballsButton.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li> <a href="https://www.google.com/search?q=lamelo+ball&rlz=1C1GEWG_enCA961CA961&oq=lamelo+ball&gs_lcrp=EgZjaHJvbWUqBwgAEAAYjwIyBwgAEAAYjwIyCggBEC4YsQMYgAQyBggCEEUYOzIGCAMQRRg7MgYIBBBFGDsyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgzODQxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8">ABOUT</a> </li>
+                    <li> <a href="pickups.html">TOP PICKUPS</a> </li>
+                    <li> <a href="">HELP</a> </li>
+                </ul>
+            </div>
+            <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+
+        </nav>
+    </section>
+    <section class="top-pickups">
+        <h1>Top Pickups</h1>
+        <p>Based on projected fantasy points</p>
+        <div class="player-boxes" id="topPickupsContainer">
+            <!-- Player boxes will be dynamically added here -->
+        </div>
+    </section>
+    <script>
+        // Sample data for demonstration
+        var topPickupsData = [
+            { name: 'Player 1', number: 10, points: 20, assists: 5, rebounds: 8, steals: 2, blocks: 1, fouls: 3, turnovers: 2 },
+            { name: 'Player 2', number: 23, points: 18, assists: 6, rebounds: 10, steals: 3, blocks: 2, fouls: 2, turnovers: 1 },
+            // Add more player data as needed
+        ];
+    
+        // Function to display top pickups
+        function displayTopPickups() {
+            var topPickupsContainer = document.getElementById('topPickupsContainer');
+            topPickupsContainer.innerHTML = ''; // Clear previous top pickups
+    
+            // Loop through each player and create a box for each
+            topPickupsData.forEach(player => {
+                var playerBox = document.createElement('div');
+                playerBox.classList.add('player-box');
+    
+                // Create content for each player box
+                playerBox.innerHTML = `
+                    <h3>${player.name}</h3>
+                    <p><strong>Number:</strong> ${player.number}</p>
+                    <p><strong>Points:</strong> ${player.points}</p>
+                    <p><strong>Assists:</strong> ${player.assists}</p>
+                    <p><strong>Rebounds:</strong> ${player.rebounds}</p>
+                    <p><strong>Steals:</strong> ${player.steals}</p>
+                    <p><strong>Blocks:</strong> ${player.blocks}</p>
+                    <p><strong>Fouls:</strong> ${player.fouls}</p>
+                    <p><strong>Turnovers:</strong> ${player.turnovers}</p>
+                    <p><strong>Fantasy Points:</strong> ${player.points + player.rebounds * 1.2 + player.assists * 1.5 + player.steals * 3 + player.blocks * 3 - player.turnovers}</p>
+                `;
+    
+                // Append the player box to the top pickups container
+                topPickupsContainer.appendChild(playerBox);
+            });
+        }
+    
+        // Call the displayTopPickups function when the page loads
+        window.onload = function () {
+            displayTopPickups();
+        };
+    </script>
+     
+    
+
+<!-- ... (your existing HTML) ... -->
+
+
+    <!-- ----JavaScript for toggle menu------ -->
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+
+    </script>
+</body>
+</html>
