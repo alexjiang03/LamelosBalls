@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="with=device-width, initial-scale= 1.0">
+        <title>Lamelo's Balls</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/0f0868eb8c.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <section class="header">
+            <nav>
+                <a href="index.html"><img src="images/ballsButton.png"></a>
+                <div class="nav-links" id="navLinks">
+                    <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li> <a href="https://www.google.com/search?q=lamelo+ball&rlz=1C1GEWG_enCA961CA961&oq=lamelo+ball&gs_lcrp=EgZjaHJvbWUqBwgAEAAYjwIyBwgAEAAYjwIyCggBEC4YsQMYgAQyBggCEEUYOzIGCAMQRRg7MgYIBBBFGDsyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgzODQxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8">ABOUT</a> </li>
+                        <li> <a href="">TOP PICKUPS</a> </li>
+                        <li> <a href="">HELP</a> </li>
+                    </ul>
+                </div>
+                <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+            </nav>
+
+            <div class="text-box">
+                <h1>World's Most Cracked Website</h1>
+                <p>This shit got you<br>You can cook your pals in fantasy</p>
+
+            </div>
+
+            <div class="search">
+                <form onsubmit="handleSearch(event)" class="search-bar" action="proxy.php" method="get">
+                    <input type="text" placeholder="search Player" name="q">
+                    <button type="submit"> <img src="images/search.png"></button>
+                </form>
+            </div>
+
+        </section>
+
+<!-- ----------Results----------- -->
+        <section class="results">
+            <h1>Search Results</h1>
+            <p>Hopefully this is good news for your fantasy squad</p>
+            <div class="row" id="resultsContainer">
+            </div>
+            
+
+        </section>
+        <!-- ... (your existing HTML) ... -->
+
+<!-- JavaScript for search and results -->
+        <script>
+
+            function handleSearch(event) {
+                event.preventDefault(); // Prevent default form submission
+                searchPlayerStats();    // Call your search function
+            }
+            
+
+            // Function to handle the search
+            function searchPlayerStats() {
+                var searchTerm = document.querySelector('.search-bar input').value.toLowerCase();
+
+                fetch('proxy.php')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Filter the data based on the search term
+                        var filteredData = data.filter(player => player.name.toLowerCase().includes(searchTerm));
+                        
+                        displayResults(filteredData);
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            }
+
+            function displayResults(data) {
+                var resultsContainer = document.getElementById('resultsContainer');
+                resultsContainer.innerHTML = ''; // Clear previous results
+                if (data.length === 0) {
+                    // Display a message when no players are found
+                    resultsContainer.innerHTML = '<p>No player found.</p>';
+                    return;
+                }
+                // Loop through each player and create a row for each
+                data.forEach(player => {
+                    var resultRow = document.createElement('div');
+                    resultRow.classList.add('row');
+
+                    // Create a column for each stat
+                    var resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
+                        <h3>${player.name}</h3>
+                    `;
+                    resultRow.appendChild(resultItem);
+
+                    resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
+                        <h3>Number</h3>
+                        <p>${player.number}</p>
+                    `;
+                    resultRow.appendChild(resultItem);
+
+                    resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
+                        <h3>Points</h3>
+                        <p>${player.points}</p>
+                    `;
+                    resultRow.appendChild(resultItem);
+
+                    resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
+                        <h3>Assists</h3>
+                        <p>${player.assists}</p>
+                    `;
+                    resultRow.appendChild(resultItem);
+
+                    resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
+                        <h3>Rebounds</h3>
+                        <p>${player.rebounds}</p>
+                    `;
+                    resultRow.appendChild(resultItem);
+
+                    resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
+                        <h3>Steals</h3>
+                        <p>${player.steals}</p>
+                    `;
+                    resultRow.appendChild(resultItem);
+
+                    resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
+                        <h3>Blocks</h3>
+                        <p>${player.blocks}</p>
+                    `;
+                    resultRow.appendChild(resultItem);
+
+                    resultItem = document.createElement('div');
+                    resultItem.classList.add('dataHeader');
+                    resultItem.innerHTML = `
+                        <h3>Fantasy Points</h3>
+                        <p>${player.points + player.rebounds*1.2 + player.assists* 1.5 + player.steals *3 + player.blocks *3}</p>
+                    `;
+                    resultRow.appendChild(resultItem);
+
+                    // Append the row to the results container
+                    resultsContainer.appendChild(resultRow);
+                });
+            }
+
+
+
+
+        </script>
+
+<!-- ... (your existing HTML) ... -->
+
+
+        <!-- ----JavaScript for toggle menu------ -->
+        <script>
+            var navLinks = document.getElementById("navLinks");
+
+            function showMenu(){
+                navLinks.style.right = "0";
+            }
+
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+            }
+
+        </script>
+
+        
+
+
+
+    </body>
+</html>

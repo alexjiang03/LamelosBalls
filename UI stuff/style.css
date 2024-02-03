@@ -1,0 +1,257 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+
+}
+.header{
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(5, 11, 35, 0.7), rgba(4, 9, 30, 0.7)), url(images/lamelo.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+nav{
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+}
+nav img{
+    width: 150px;
+}
+.nav-links{
+    flex: 1;
+    text-align: right;
+}
+
+.nav-links ul li{
+    list-style-type: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.nav-links ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #00788C;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+
+}
+
+.nav-links ul li:hover::after{
+    width: 100%;
+}
+
+.text-box{
+    width: 90%;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding-top: 200px;
+}
+
+.text-box h1{
+    font-size: 62px;
+
+}
+
+.text-box p{
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.hero-btn{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+
+}
+
+.hero-btn:hover{
+    border: 1px solid #00788C;
+    background-color: #00788C;
+    transition: 1s;
+}
+
+nav .fa-solid{
+    display: none;
+}
+
+.search{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+}
+
+.search-bar{
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    border-radius: 60px;
+    padding: 10px 20px;
+    backdrop-filter: blur(4px) saturate(180%);
+}
+
+.search-bar input{
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 24px 20px;
+    font-size: 20px;
+    color: #cac7ff;
+
+}
+
+::placeholder{
+    color: #cac7ff;
+}
+
+.search-bar button img{
+    width: 25px;
+}
+
+.search-bar button{
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: #1D1160;
+    cursor: pointer;
+}
+
+
+
+
+@media(max-width: 700px){
+    .text-box h1{
+        font-size: 20px;
+
+    }
+    .nav-links ul li{
+        display: block;
+    }
+    .nav-links{
+        position: absolute;
+        background-color: #00788C;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
+
+    }
+
+    nav .fa-solid{
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+    .nav-links ul li::after {
+        content: '';
+        width: 0%;
+        height: 2px;
+        background: #fff;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+    }
+
+    .nav-links ul li:hover::after {
+        width: 100%;
+    }
+    .nav-links ul{
+        padding: 30px;
+    }
+}
+
+/* -----------results----------- */
+
+/* /* Add this CSS to your existing style.css or in a new stylesheet */
+
+.results {
+    padding: 20px;
+    background-color: #f8f8f8;
+    margin-top: 20px;
+    height: 400px; /* Adjust the height value as needed */
+    overflow-y: auto; /* Add this property to enable vertical scrolling if the content exceeds the height */
+}
+
+.results h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.results p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.dataHeader {
+    flex: 1;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dataHeader h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.dataHeader p {
+    font-size: 16px;
+    color: #555;
+}
+
+@media(max-width: 700px){
+
+    .dataHeader{
+        flex-basis: 10%;
+        border-radius: 5px;
+        margin-bottom: 2%;
+        padding: 10px 6px;
+    }
+    h3{
+        margin: 5px;
+    }
+
+
+}
