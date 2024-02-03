@@ -33,6 +33,8 @@ def scrape_player_names():
             row_data = re.sub("-IV[\ \-\r\n]*$", '', row_data)
             # Remove trailing dashes
             row_data = re.sub('-+$', '', row_data)
+            # Further convert to URL formatting
+            row_data = row_data.lower()
             rows.append(row_data)
 
         # Creating a DataFrame
