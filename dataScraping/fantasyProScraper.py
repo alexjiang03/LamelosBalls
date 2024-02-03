@@ -85,9 +85,9 @@ def save_to_csv(player_name, stats_df):
     print(f"Data saved to {filename}")
 
 def main():
-    # scrape_player_names().to_csv('./../players.csv', index=False) # Save all player names
+    # scrape_player_names().to_csv('./players.csv', index=False) # Save all player names
 
-    with open ('./../players.csv', 'r') as playerFile:
+    with open ('./players.csv', 'r') as playerFile:
         reader = csv.reader(playerFile)
         header = next(reader) # Skip header
         
