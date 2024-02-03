@@ -79,6 +79,8 @@ def scrape_player_stats(player_url):
 def save_to_csv(player_name, stats_df):
     # Save the DataFrame to a CSV file
     filename = f"./playerData/{player_name}.csv"
+    relevant_data = ['OPP', 'MIN', 'REB', 'AST', 'TO', 'STL', 'BLK', 'PF', 'PTS']
+    stats_df = stats_df[relevant_data]
     stats_df.to_csv(filename, index=False)
     print(f"Data saved to {filename}")
 
