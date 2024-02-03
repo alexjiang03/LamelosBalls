@@ -9,7 +9,12 @@ foreach filename [glob -nocomplain -types f -- ./playerData/*] {
 
     # Populate the "GAME" column with incremental numbers starting from 0
     for {set i 1} {$i < [llength $lines]} {incr i} {
-        puts $allPlayersFile "$pname,[lindex $lines $i]"
+        # Convert percentages to decimal
+        set statline [lindex $lines $i]
+        regsub -all {,([\d]*)\.([\d]*)\%} $statline {,0.\1\2} statline
+
+        # Print to file
+        puts $allPlayersFile "$pname,$statline"
     }
 
     puts "Merged $filename to playerData/allPlayers.csv"
