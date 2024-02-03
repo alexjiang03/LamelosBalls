@@ -2,12 +2,6 @@
 #   - Removes the vs. and @ from the start of the opponent column
 #     to simplify later adding opponent stats in
 #   - Adds a game number to each row
-#   - Creates a single, large .csv file with all of the players
-#     data in it, with an additional label of "PLAYER"
-
-# Setup & open the larger, combined db file
-set allPlayersFile [open "./allPlayers.csv" w]
-puts $allPlayersFile "PLAYER,GAME,OPP,MIN,REB,AST,TO,STL,BLK,PF,PTS"
 
 foreach filename [glob -nocomplain -types f -- ./playerData/*] {
     set info [exec cat $filename]
@@ -19,13 +13,8 @@ foreach filename [glob -nocomplain -types f -- ./playerData/*] {
 
     set lines [split $info "\n"]; # Split the table into lines
 
-    # Get playername from filename-.csv
-    set pname ""
-    regexp {playerData/([^\.]+)\.csv} $filename _temp pname
-
     for {set i 1} {$i < [llength $lines]} {incr i} {
         set lines [lreplace $lines $i $i "[expr $i-1],[lindex $lines $i]"]; # Populate the "GAME" column with incremental numbers starting from 0
-        puts $allPlayersFile "$pname,[lindex $lines $i]"; # Add player name to & print to combo file
     }
 
     set info [join $lines "\n"]; # Join the lines back into a table
@@ -37,8 +26,6 @@ foreach filename [glob -nocomplain -types f -- ./playerData/*] {
 
     puts "Completed final data formatting on $filename"
 }
-
-close $allPlayersFile
 
 puts "Done"
 
