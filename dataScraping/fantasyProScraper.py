@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
+import csv
 
 def scrape_player_names():
     # List of all active players is at this URL
@@ -82,13 +83,21 @@ def save_to_csv(player_name, stats_df):
     print(f"Data saved to {filename}")
 
 def main():
-    scrape_player_names().to_csv('./../players.csv', index=False) # Save all player names
-    player_url = '/nba/games/shai-gilgeous-alexander.php'
+    # scrape_player_names().to_csv('./../players.csv', index=False) # Save all player names
 
-    player_stats = scrape_player_stats(player_url)
-    if player_stats is not None:
-        player_name = player_url.split('/')[-1]
-        save_to_csv(player_name.rstrip('.php'), player_stats)
+    with open ('./../players.csv', 'r') as playerFile:
+        reader = csv.reader(playerFile)
+        header = next(reader) # Skip header
+        
+        for row in reader:
+            player_name = row[0]
+
+            player_url = f'/nba/games/{player_name}.php'
+
+            player_stats = scrape_player_stats(player_url)
+            if player_stats is not None:
+                player_name = player_url.split('/')[-1]
+                save_to_csv(player_name[:-4], player_stats) # :-4 to remove .php
 
 if __name__ == "__main__":
     main()
